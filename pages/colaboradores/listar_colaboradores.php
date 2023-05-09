@@ -159,6 +159,9 @@ $sql = "SELECT * FROM users WHERE user_lixeira ='1' ORDER BY user_nome";
 $resultado = mysqli_query($conn, $sql);
 //Realizando um loop para exibi&ccedil;&atilde;o de todos os dados 
 while ($linha=mysqli_fetch_array($resultado)) {
+    $sql_tipo = "SELECT * from tipo_colaborador where id_tipo_colaborador = '".$linha['user_tipo']."'";
+    $resultado_tipo = mysqli_query($conn, $sql_tipo);
+    $linha_tipo = mysqli_fetch_array($resultado_tipo);
 	?>
                                                         <tr>
                                                          
@@ -166,7 +169,7 @@ while ($linha=mysqli_fetch_array($resultado)) {
                                                             <td class="customer_name"><?php echo $linha['user_nome'] ?></td>
                                                             <td class="email"><?php echo $linha['user_email'] ?></td>
                                                             <td class="phone"><?php echo $linha['user_telefone'] ?></td>
-                                                            <td class="type"><?php echo $linha['user_tipo'] ?></td>
+                                                            <td class="type"><?php echo $linha_tipo['nome_tipo_colaborador'] ?></td>
                                                             <td class="date"><i class="ri-checkbox-circle-line fs-17 align-middle"></i> Ativo</td>
                                                             <td class="status"><span class="badge badge-soft-success text-uppercase"> <!-- <a href="javascript:void(0);"  data-bs-toggle="modal" data-bs-target=".bs-example-modal-center<?php echo $linha['user_id'] ?>" class="link-info fs-15" ><i class="ri-image-line"></i></a> -->
                                                                              

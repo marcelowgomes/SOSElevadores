@@ -21,8 +21,8 @@ include "database/conexao.php";
 $upass = strip_tags($_POST['senha']);
 $hashed_password = password_hash($upass, PASSWORD_DEFAULT); 
 
-$conn->query($insert = "INSERT INTO users (user_nome, user_login,user_senha, user_email, user_quem, user_emp, user_telefone)
- VALUES ('$_POST[nome]','$_POST[login]','$hashed_password','$_POST[email]','$user[user_id]','1','$_POST[telefone]')");
+$conn->query($insert = "INSERT INTO users (user_nome, user_login,user_senha, user_email, user_quem, user_emp, user_telefone, user_tipo)
+ VALUES ('$_POST[nome]','$_POST[login]','$hashed_password','$_POST[email]','$user[user_id]','1','$_POST[telefone]', '$_POST[tipo]')");
 
 $userid=mysqli_insert_id($conn);
 

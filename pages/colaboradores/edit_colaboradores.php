@@ -10,6 +10,9 @@ if (!empty($_SESSION['user_id'])) {
 $sql = "SELECT * FROM users WHERE user_id  ='$id' and user_emp='$user[user_emp]'  ORDER BY user_nome";
 $resultado = mysqli_query($conn, $sql);
 $linha=mysqli_fetch_array($resultado);
+
+$sql_colaborador = "SELECT * FROM tipo_colaborador";
+$result_colaborador = mysqli_query($conn, $sql_colaborador);
 ?> 
 
 
@@ -53,6 +56,19 @@ $linha=mysqli_fetch_array($resultado);
                                                     </div>
 
                                                 </div>
+
+                                                <div class="col-lg-6">
+                                                   <div>
+                                                     <label class="form-label mb-0">Tipo:</label>
+                                                       <select name="tipo" type="text" class="form-control" id="tipo" >
+                                                        <option value="<?php echo $linha['user_tipo'] ?>"></option>
+                                                        <?php while($linha_colaborador = mysqli_fetch_assoc($result_colaborador)){ ?>
+                                                        <option value="<?php echo $linha_colaborador['nome_tipo_colaborador']; ?>"><?php echo $linha_colaborador['nome_tipo_colaborador']; ?></option>
+                                                        <?php } ?>
+                                                       </select>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-lg-6">
                                                    <div>
                                                      <label class="form-label mb-0">E-mail:</label>

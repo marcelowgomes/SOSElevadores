@@ -139,7 +139,7 @@ if (!empty($_SESSION['user_id'])) {
                             <tbody class="list form-check-all">
 
                                 <?php
-                                $sql = "SELECT * FROM clientes WHERE cliente_lixeira ='1'  ORDER BY cliente_fantasia";
+                                $sql = "SELECT * FROM clientes WHERE cliente_lixeira ='1'  ORDER BY cliente_fantasia limit 5";
                                 // Executando $sql e verificando se tudo ocorreu certo.
                                 $resultado = mysqli_query($conn, $sql);
                                 //Realizando um loop para exibi&ccedil;&atilde;o de todos os dados 
@@ -156,10 +156,10 @@ if (!empty($_SESSION['user_id'])) {
                                         <td class="date"><i class="ri-checkbox-circle-line fs-17 align-middle"></i> Ativo</td>
                                         <td class="status">
                                             <span class="badge badge-soft-success text-uppercase"> 
-                                            <a href="listar_equipamentos/<?php echo $linha['cliente_id'] ?>" class="link-success fs-15"><i class="ri-information-line"></i></a>
-                                            
-                                                <a href="editar_cliente/<?php echo $linha['cliente_id'] ?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
-                                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#firstmodal<?php echo $linha['cliente_id'] ?>" class="link-danger fs-15"><i class="ri-delete-bin-line"></i></a></span></td>                                               
+                                            <a href="listar_equipamentos/<?php echo $linha['cliente_id'] ?>" class="link-warning fs-15"><i class="ri-home-line"></i></a>
+                                            <a href="tela_cliente/<?php echo $linha['cliente_id'] ?>" class="link-success fs-15"><i class="ri-information-line"></i></a>
+                                            <a href="editar_cliente/<?php echo $linha['cliente_id'] ?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
+                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#firstmodal<?php echo $linha['cliente_id'] ?>" class="link-danger fs-15"><i class="ri-delete-bin-line"></i></a></span></td>                                               
                                     </tr>
 
 

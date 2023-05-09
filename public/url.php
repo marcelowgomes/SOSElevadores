@@ -8,7 +8,17 @@
         }
 
         switch( $url[0] ){
-            
+
+
+/// TECNICA
+
+
+
+
+case 'controle_os': include('pages/tecnica/controle_os.php');break;
+
+
+
 case 'home': include('pages/tarefas/listar_tarefas.php');break;
 case 'add-aluno': include('pages/alunos/add-aluno.php');break;
 				

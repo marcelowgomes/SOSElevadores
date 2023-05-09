@@ -81,7 +81,7 @@ if (!empty($_SESSION['user_id'])) {
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">OS</h4>
+            <h4 class="mb-sm-0">ORÇAMENTOS A REALIZAR</h4>
 
            
 
@@ -128,7 +128,6 @@ if (!empty($_SESSION['user_id'])) {
                                     <th class="sort" data-sort="customer_name">Data</th>
                                     <th class="sort" data-sort="customer_name">Cliente</th>
                                     <th class="sort" data-sort="email">Técnico</th>
-                                    <th class="sort" data-sort="phone">CPF</th>
                                     <th class="sort" data-sort="date">Status</th>
                                     <th class="sort" data-sort="status">Ações</th>
 
@@ -141,7 +140,6 @@ $sqlos = "SELECT * FROM os s inner join clientes c on s.os_cliente = c.cliente_i
 inner join chamados ch on ch.chamado_os = s.os_id
 inner join users us on ch.chamado_usuario = us.user_id
 
-
 where ch.chamado_status = '6' ";
 $resultadoos = mysqli_query($conn, $sqlos);
 while ($linhaos = mysqli_fetch_array($resultadoos)) {
@@ -151,17 +149,14 @@ while ($linhaos = mysqli_fetch_array($resultadoos)) {
                                         <th scope="row"><?php echo date('d/m/Y H:i:s', strtotime($linhaos[chamado_data_aberto])); ?> </th>
 
 
-                                        <td class="customer_name"><?php echo $linhaos[cliente_fantasia] ?></td>
-                                        <td class="email"><?php echo $linhaos[usuario_nome] ?></td>
-                                        <td class="phone"><?php echo $linha[2] ?></td>
-                                        <td class="date"><i class="ri-checkbox-circle-line fs-17 align-middle"></i> Ativo</td>
+                                        <td><?php echo $linhaos[cliente_fantasia] ?></td>
+                                        <td><?php echo $linhaos[user_nome] ?></td>
+                                        <td><i class="ri-checkbox-circle-line fs-17 align-middle"></i> Aguardando orçamento</td>
                                         <td class="status">
                                             <span class="badge badge-soft-success text-uppercase"> 
-                                            <a href="tela_cliente/<?php echo $linha[0] ?>" class="link-success fs-15"><i class="ri-information-line"></i></a>
+                                            <a href="orcamento_solicitado/<?php echo $linhaos[os_id] ?>" class="link-success fs-15"><i class="ri-information-line"></i></a>
 
-                                            <a href="listar_equipamentos/<?php echo $linha[0] ?>" class="link-warning fs-15"><i class="ri-home-line"></i></a>
-                                            <a href="editar_cliente/<?php echo $linha[0] ?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
-                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#firstmodal<?php echo $linha[0] ?>" class="link-danger fs-15"><i class="ri-delete-bin-line"></i></a></span></td>                                               
+</td>                                           
                                     </tr>
 
 

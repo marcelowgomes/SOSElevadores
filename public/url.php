@@ -18,7 +18,11 @@
 case 'controle_os': include('pages/tecnica/controle_os.php');break;
 case 'inserir_os': include('pages/insert/inserir_os.php');break;
 case 'salvar_interacao_os': include('pages/insert/salvar_interacao_os.php');break;
+case 'ver_orcamentos_abertos': include('pages/tecnica/ver_orcamentos_abertos.php');break;
 
+case 'orcamento_solicitado': 
+@$id = $url[1];
+include('pages/tecnica/orcamento_solicitado.php');break;
 
 
 

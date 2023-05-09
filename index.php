@@ -828,9 +828,13 @@ while ($tarefas = mysqli_fetch_array($exet)) {
                                 <div class="collapse menu-dropdown" id="sidebarLayouts">
                                 <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                <a href="controle_os" class="nav-link" data-key="t-vertical">Controle de OS</a>
-  
+                                <a href="ver_orcamentos_abertos" class="nav-link" data-key="t-vertical">Orçamentos</a>
                                             </li>
+                                <li class="nav-item">
+                                <a href="controle_os" class="nav-link" data-key="t-vertical">Listar OS</a>
+                                            </li>
+
+
                                        </ul>
                                    </div>
 

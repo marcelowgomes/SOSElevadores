@@ -16,6 +16,11 @@
 
 
 case 'controle_os': include('pages/tecnica/controle_os.php');break;
+case 'inserir_os': include('pages/insert/inserir_os.php');break;
+case 'salvar_interacao_os': include('pages/insert/salvar_interacao_os.php');break;
+
+
+
 
 
 
@@ -33,9 +38,9 @@ include('pages/tarefas/listar_tarefas_concluidas.php');break;
 				
 				
 				
-case 'perfil':
+case 'tela_cliente':
 @$id = $url[1];
-include('pages/alunos/perfil.php');break;
+include('pages/clientes/perfil.php');break;
 
 // clientes
 case 'cad_cliente':

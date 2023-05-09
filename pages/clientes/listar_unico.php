@@ -113,7 +113,7 @@ if (!empty($_SESSION['user_id'])) {
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
-                                <form id="form_busca">
+                                <form method="post" action="listar_unico" id="form_busca">
                                 <div class="search-box ms-2">
                                     <input type="text" class="form-control" id="busca" name="cliente" placeholder="Localizar clientes">
                                     <i class="ri-search-line search-icon"></i>
@@ -326,6 +326,14 @@ if (!empty($_SESSION['user_id'])) {
                 });
 
             });
+
+            $(document).ready(function() {
+                form  = $("#form_busca")
+                $("#busca").blur(function (){
+                    form.submit();
+                })
+                
+            })
         </script>
 
 

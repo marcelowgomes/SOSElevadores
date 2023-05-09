@@ -145,6 +145,7 @@ function blurInput(input) {
                                                             <th class="sort" data-sort="customer_name">Nome</th>
                                                             <th class="sort" data-sort="email">E-mail</th>
                                                             <th class="sort" data-sort="phone">Telefone</th>
+                                                            <th class="sort" data-sort="type">Tipo</th>
                                                             <th class="sort" data-sort="date">Login</th>
                                                            <th class="sort" data-sort="date">Ações</th>
                                                            
@@ -165,6 +166,7 @@ while ($linha=mysqli_fetch_array($resultado)) {
                                                             <td class="customer_name"><?php echo $linha['user_nome'] ?></td>
                                                             <td class="email"><?php echo $linha['user_email'] ?></td>
                                                             <td class="phone"><?php echo $linha['user_telefone'] ?></td>
+                                                            <td class="type"><?php echo $linha['user_tipo'] ?></td>
                                                             <td class="date"><i class="ri-checkbox-circle-line fs-17 align-middle"></i> Ativo</td>
                                                             <td class="status"><span class="badge badge-soft-success text-uppercase"> <!-- <a href="javascript:void(0);"  data-bs-toggle="modal" data-bs-target=".bs-example-modal-center<?php echo $linha['user_id'] ?>" class="link-info fs-15" ><i class="ri-image-line"></i></a> -->
                                                                              

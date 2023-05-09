@@ -1,10 +1,15 @@
 <?php // CODIGO DA SESSION
+include_once "../../database/conexao.php";
 session_start();
 if (!empty($_SESSION['user_id'])) {
 } else {
     $_SESSION['msg'] = "Área restrita";
     header("Location: ../../login.php");
 }
+
+$sql = "SELECT * FROM tipo_colaborador";
+$result = mysqli_query($conn, $sql);
+
 ?> 
  <!-- Sweet Alert css-->
         <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
@@ -46,6 +51,19 @@ if (!empty($_SESSION['user_id'])) {
                                                     </div>
 
                                                 </div>
+
+                                                <div class="col-lg-6">
+                                                   <div>
+                                                     <label class="form-label mb-0">Tipo:</label>
+                                                       <select name="tipo" type="text" class="form-control" id="tipo" >
+                                                          <option value=""></option>
+                                                          <?php while($linha = mysqli_fetch_assoc($result)){ ?>
+                                                          <option value="<?php echo $linha['nome_tipo_colaborador']; ?>"><?php echo $linha['nome_tipo_colaborador']; ?></option>
+                                                          <?php } ?>
+                                                       </select>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-lg-6">
                                                    <div>
                                                      <label class="form-label mb-0">E-mail:</label>

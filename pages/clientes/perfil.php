@@ -6,21 +6,17 @@ if(!empty($_SESSION['id'])){
 	header("Location: login.php");	
 }
 
-$cmd = "select * from alunos where id_aluno ='$id' and cod_cfc ='$user[cod_cfc]'   ";
-$alunos = mysqli_query($conn, $cmd);
-$total = mysqli_num_rows($alunos);
-$aluno = mysqli_fetch_array($alunos);
+$cmd = "select * from clientes where cliente_id ='$id'   ";
+$clientes = mysqli_query($conn, $cmd);
+$cliente = mysqli_fetch_array($clientes);
 
 ?>
 
 <link rel="stylesheet" href="assets/libs/swiper/swiper-bundle.min.css">
 
-   
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-       
 
           
                 <div class="container-fluid">
@@ -40,16 +36,21 @@ $aluno = mysqli_fetch_array($alunos);
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1"><?php echo $aluno['aluno_nome'] ?></h3>
-                                    <p class="text-white-75">Aluno desde: <?php echo date('d/m/Y', strtotime($aluno['aluno_cad_data'])); ?> </p>
+                                    <h3 class="text-white mb-1"><?php echo $cliente['cliente_fantasia'] ?></h3>
+                                    <p class="text-white-75">Cliente desde: -- </p>
                                     <div class="hstack text-white-50 gap-1">
-                                        <div class="me-2"><i
-                                                class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i><?php echo $aluno['aluno_cidade'] ?>,
-                                            <?php echo $aluno['aluno_uf'] ?></div>
-                                        <div><i class=" ri-article-line
- me-1 text-white-75 fs-16 align-middle"></i><?php echo $aluno['aluno_cpf'] ?>
-                                        </div>
+<div class="me-2"><i class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i><?php echo $cliente['cliente_logradouro'] ?>,
+<?php echo $cliente['cliente_numero'] ?> - <?php echo $cliente['cliente_bairro'] ?>
+ <?php echo $cliente['cliente_cep'] ?> <?php echo $cliente['cliente_cidade'] ?> <?php echo $cliente['cliente_estado'] ?></div>
+<div><i class=" ri-article-line me-1 text-white-75 fs-16 align-middle"></i><?php echo $cliente['cliente_cpf'] ?></div>
+                                        <br>
                                     </div>
+                                    <div class="hstack text-white-50 gap-1">
+                                    <i class=" ri-user-line me-1 text-white-75 fs-16 align-middle"></i><Strong> Sindico:</Strong> <?php echo $cliente['cliente_sindico'] ?>
+                                    <i class=" ri-phone-line me-1 text-white-75 fs-16 align-middle"></i> <?php echo $cliente['cliente_telefone'] ?>
+
+                                   </div>
+
                                 </div>
                             </div>
                             <!--end col-->
@@ -57,14 +58,14 @@ $aluno = mysqli_fetch_array($alunos);
                                 <div class="row text text-white-50 text-center">
                                     <div class="col-lg-6 col-4">
                                         <div class="p-2">
-                                            <h4 class="text-white mb-1">24.3K</h4>
-                                            <p class="fs-14 mb-0">Followers</p>
+                                            <h4 class="text-white mb-1">--</h4>
+                                            <p class="fs-14 mb-0">--</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-4">
                                         <div class="p-2">
-                                            <h4 class="text-white mb-1">1.3K</h4>
-                                            <p class="fs-14 mb-0">Following</p>
+                                            <h4 class="text-white mb-1">--</h4>
+                                            <p class="fs-14 mb-0">--</p>
                                         </div>
                                     </div>
                                 </div>
@@ -90,29 +91,29 @@ $aluno = mysqli_fetch_array($alunos);
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link fs-14" data-bs-toggle="tab" href="#activities"
+                                           <!-- <a class="nav-link fs-14" data-bs-toggle="tab" href="#activities"
                                                 role="tab">
                                                 <i class="ri-list-unordered d-inline-block d-md-none"></i> <span
                                                     class="d-none d-md-inline-block">Atividades</span>
                                             </a>
-                                        </li>
-                                        <li class="nav-item">
+                                        </li> -->
+                                       <!-- <li class="nav-item">
                                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#projects" role="tab">
                                                 <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span
                                                     class="d-none d-md-inline-block">Aulas</span>
                                             </a>
-                                        </li>
-                                        <li class="nav-item">
+                                        </li> -->
+                                    <!--    <li class="nav-item">
                                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#documents" role="tab">
                                                 <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span
                                                     class="d-none d-md-inline-block">Taxas</span>
                                             </a>
                                         </li>
-										
+-->
 										 <li class="nav-item">
                                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#documents" role="tab">
                                                 <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span
-                                                    class="d-none d-md-inline-block">Financeiro</span>
+                                                    class="d-none d-md-inline-block">Chamados</span>
                                             </a>
                                         </li>
 										
@@ -1706,12 +1707,10 @@ $aluno = mysqli_fetch_array($alunos);
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center mb-4">
-                                                    <h5 class="card-title flex-grow-1 mb-0">Documents</h5>
+                                                    <h5 class="card-title flex-grow-1 mb-0">Chamados</h5>
                                                     <div class="flex-shrink-0">
-                                                        <input class="form-control d-none" type="file" id="formFile">
-                                                        <label for="formFile" class="btn btn-danger"><i
-                                                                class="ri-upload-2-fill me-1 align-bottom"></i> Upload
-                                                            File</label>
+                                                      
+                                                        <label for="formFile" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> + Cadastrar Nova OS</label>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -1720,35 +1719,179 @@ $aluno = mysqli_fetch_array($alunos);
                                                             <table class="table table-borderless align-middle mb-0">
                                                                 <thead class="table-light">
                                                                     <tr>
-                                                                        <th scope="col">File Name</th>
-                                                                        <th scope="col">Type</th>
-                                                                        <th scope="col">Size</th>
-                                                                        <th scope="col">Upload Date</th>
-                                                                        <th scope="col">Action</th>
+                                                                        <th scope="col">#</th>
+                                                                        <th scope="col">Data</th>
+                                                                        <th scope="col">Solicitante</th>
+                                                                        <th scope="col">Tipo</th>
+                                                                        <th scope="col">Status</th>
+                                                                        <th scope="col">Última Atualização</th>
+                                                                        <th scope="col">Ação</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+
+<?php 
+
+$sqlo = "SELECT * FROM os o inner join os_tipos ost on o.os_tipo = ost.os_tipo_id inner join os_status oss ON o.os_status = oss.os_status_id 
+inner join users us on  o.os_usuario = us.user_id 
+
+where o.os_cliente = $id ";
+$resultadoo = mysqli_query($conn, $sqlo);
+while ($linhao = mysqli_fetch_array($resultadoo)) { 
+    
+$sqlch = "SELECT * FROM chamados where chamado_os = $linhao[os_id] order by chamado_data_aberto desc ";
+$resultadoch = mysqli_query($conn, $sqlch);
+$linhach = mysqli_fetch_array($resultadoch);
+$totalch = mysqli_num_rows($resultadoch);
+    
+    ?>
+
+
+<!-- Inicio Modal Interagir -->
+<div class="modal fade" id="staticBackdrop<?php echo $linhao[os_id] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" 
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog 	modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Chamado #<?php echo $linhao[os_id] ?> - Status: <?php echo $linhao[os_status_nome] ?> </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+       <strong> Cliente: </strong><?php echo $cliente[cliente_fantasia] ?><br>
+       <strong>Solicitante:</strong> <?php echo $linhao[os_solicitante] ?> <br>
+       <strong> Responsável pelo abertura OS: </strong><?php echo $linhao[user_nome] ?> <br>
+       <strong> Data Abertura: </strong><?php echo date('d/m/Y H:i:s', strtotime($linhao[os_data_abertura])); ?> <br>
+       <strong> Interaçãoes até momento: </strong> <?php echo $totalch ?> <br>
+       <strong> Informações iniciais: </strong> <br>
+       <span class="text-danger"> <?php echo $linhao[os_consideracoes] ?> </span>
+       <br>
+       <br>
+
+       <form action="salvar_interacao_os" method ="POST">
+
+<label> <strong> Direcionar para técnico  </strong></label> 
+
+<select name="tecnico"  required class="form-control meuselect">
+<option value="">Informe</option>
+    <?php
+$sqlte = "SELECT * FROM tecnicos WHERE tecnico_status ='1'  ORDER BY tecnico_nome";
+$resultadote = mysqli_query($conn, $sqlte);
+while ($linhate = mysqli_fetch_array($resultadote)) { ?>
+    <option value="<?php echo $linhate[tecnico_id] ?>"><?php echo $linhate[tecnico_nome] ?></option>
+    <?php } ?>
+</select>
+
+
+
+<label>Observações </label>
+   
+   <textarea class="form-control" id="story" name="observacoes" rows="5" cols="33"></textarea>
+
+
+<input name="dataos" type="hidden" value="<?php echo $linhao[os_data_abertura] ?>">
+<input name="cliente" type="hidden" value="<?php echo $linhao[os_cliente] ?>">
+<input name="os" type="hidden" value="<?php echo $linhao[os_id] ?>">
+
+
+
+      </div>
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Salvar</button>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- Fim Modal Interagir -->
+
+
+
+
+<!-- Inicio Modal Visualizar -->
+<div class="modal fade" id="staticBackdrop2<?php echo $linhao[os_id] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" 
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog 	modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Dados do Chamado #<?php echo $linhao[os_id] ?> - Status: <?php echo $linhao[os_status_nome] ?> </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+       <strong> Cliente: </strong><?php echo $cliente[cliente_fantasia] ?><br>
+       <strong>Solicitante:</strong> <?php echo $linhao[os_solicitante] ?> <br>
+       <strong> Responsável pelo abertura OS: </strong><?php echo $linhao[user_nome] ?> <br>
+       <strong> Data Abertura: </strong><?php echo date('d/m/Y H:i:s', strtotime($linhao[os_data_abertura])); ?> <br>
+       <strong> Interaçãoes até momento: </strong> <?php echo $totalch ?> <br>
+       <?php if ($totalch == '0') { } else { ?>  <strong> Última interação: </strong> <?php echo date('d/m/Y H:i:s', strtotime($linhach[chamado_data_aberto])); ?> <br> <?php } ?>
+      <strong> Informações iniciais: </strong> <br> 
+       <span class="text-danger"> <?php echo $linhao[os_consideracoes] ?> </span>
+       <br>
+       <br>
+
+       <form action="salvar_interacao_os" method ="POST">
+
+<label> <strong> Interaçãoes  </strong></label> 
+<br>
+    <?php
+$sqlchi = "SELECT * FROM chamados c  inner join users us on c.chamado_usuario = us.user_id  
+inner join os_status ost on c.chamado_status =  ost.os_status_id
+WHERE c.chamado_os ='$linhao[os_id]'  ORDER BY c.chamado_data_aberto desc";
+$resultadochi = mysqli_query($conn, $sqlchi);
+while ($linhachi = mysqli_fetch_array($resultadochi)) { ?> 
+
+<strong> Registro:</strong> #<?php echo $linhachi[chamado_id] ?> <br>
+<strong> Data:</strong> <?php echo date('d/m/Y H:i:s', strtotime($linhachi[chamado_data_aberto])); ?> <br>
+<strong> Usuário:</strong> <?php echo $linhachi[user_nome] ?>  <br>
+<strong> Status: </strong><?php echo $linhachi[os_status_nome] ?> <br>
+<strong> Observações: </strong> <br><?php echo $linhachi[chamado_observacoes] ?> <br>
+
+
+<hr>
+    <?php } ?>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- Fim Modal Visualizar -->
+
+
+
+
                                                                     <tr>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center">
-                                                                                <div class="avatar-sm">
-                                                                                    <div
-                                                                                        class="avatar-title bg-soft-primary text-primary rounded fs-20">
-                                                                                        <i class="ri-file-zip-fill"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="ms-3 flex-grow-1">
-                                                                                    <h6 class="fs-14 mb-0"><a
-                                                                                            href="javascript:void(0)"
-                                                                                            class="text-body">Artboard-documents.zip</a>
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
+<td><?php echo $linhao[os_id] ?> </td>
+<td>
+<div class="d-flex align-items-center">
+<?php echo date('d/m/Y H:i:s', strtotime($linhao[os_data_abertura])); ?>
+</div>
                                                                         </td>
-                                                                        <td>Zip File</td>
-                                                                        <td>4.57 MB</td>
-                                                                        <td>12 Dec 2021</td>
+                                                                        <td><?php echo $linhao[os_solicitante] ?></td>
+                                                                        <td><?php echo $linhao[os_tipo_nome] ?></td>
+                                                                        <td><?php echo $linhao[os_status_nome] ?></td>
+                                                                        <td><?php if($totalch == '0') {  ?>Sem Registro <?php } else { ?>
+                                                                        <?php echo date('d/m/Y H:i:s', strtotime($linhach[chamado_data_aberto])); ?>
+ <?php } ?>
+                                                                        
+                                                                        </td>
                                                                         <td>
+
+
+
+
+                                                                        
                                                                             <div class="dropdown">
                                                                                 <a href="javascript:void(0);"
                                                                                     class="btn btn-light btn-icon"
@@ -1759,271 +1902,26 @@ $aluno = mysqli_fetch_array($alunos);
                                                                                 </a>
                                                                                 <ul class="dropdown-menu dropdown-menu-end"
                                                                                     aria-labelledby="dropdownMenuLink15">
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
+<li><a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#staticBackdrop2<?php echo $linhao[os_id] ?>"><i class="ri-eye-fill me-2 align-middle text-muted"></i>Visualizar</a>
                                                                                     </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
+<li><a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $linhao[os_id] ?>">
+    <i class="ri-download-2-fill me-2 align-middle text-muted"></i>Interagir</a>
                                                                                     </li>
                                                                                     <li class="dropdown-divider"></li>
                                                                                     <li><a class="dropdown-item"
                                                                                             href="javascript:void(0);"><i
-                                                                                                class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
+                                                                                                class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Deletar</a>
                                                                                     </li>
                                                                                 </ul>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center">
-                                                                                <div class="avatar-sm">
-                                                                                    <div
-                                                                                        class="avatar-title bg-soft-danger text-danger rounded fs-20">
-                                                                                        <i class="ri-file-pdf-fill"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="ms-3 flex-grow-1">
-                                                                                    <h6 class="fs-14 mb-0"><a
-                                                                                            href="javascript:void(0);"
-                                                                                            class="text-body">Bank
-                                                                                            Management System</a></h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>PDF File</td>
-                                                                        <td>8.89 MB</td>
-                                                                        <td>24 Nov 2021</td>
-                                                                        <td>
-                                                                            <div class="dropdown">
-                                                                                <a href="javascript:void(0);"
-                                                                                    class="btn btn-light btn-icon"
-                                                                                    id="dropdownMenuLink3"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="true">
-                                                                                    <i class="ri-equalizer-fill"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    aria-labelledby="dropdownMenuLink3">
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                                    </li>
-                                                                                    <li class="dropdown-divider"></li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center">
-                                                                                <div class="avatar-sm">
-                                                                                    <div
-                                                                                        class="avatar-title bg-soft-secondary text-secondary rounded fs-20">
-                                                                                        <i class="ri-video-line"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="ms-3 flex-grow-1">
-                                                                                    <h6 class="fs-14 mb-0"><a
-                                                                                            href="javascript:void(0);"
-                                                                                            class="text-body">Tour-video.mp4</a>
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>MP4 File</td>
-                                                                        <td>14.62 MB</td>
-                                                                        <td>19 Nov 2021</td>
-                                                                        <td>
-                                                                            <div class="dropdown">
-                                                                                <a href="javascript:void(0);"
-                                                                                    class="btn btn-light btn-icon"
-                                                                                    id="dropdownMenuLink4"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="true">
-                                                                                    <i class="ri-equalizer-fill"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    aria-labelledby="dropdownMenuLink4">
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                                    </li>
-                                                                                    <li class="dropdown-divider"></li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center">
-                                                                                <div class="avatar-sm">
-                                                                                    <div
-                                                                                        class="avatar-title bg-soft-success text-success rounded fs-20">
-                                                                                        <i
-                                                                                            class="ri-file-excel-fill"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="ms-3 flex-grow-1">
-                                                                                    <h6 class="fs-14 mb-0"><a
-                                                                                            href="javascript:void(0);"
-                                                                                            class="text-body">Account-statement.xsl</a>
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>XSL File</td>
-                                                                        <td>2.38 KB</td>
-                                                                        <td>14 Nov 2021</td>
-                                                                        <td>
-                                                                            <div class="dropdown">
-                                                                                <a href="javascript:void(0);"
-                                                                                    class="btn btn-light btn-icon"
-                                                                                    id="dropdownMenuLink5"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="true">
-                                                                                    <i class="ri-equalizer-fill"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    aria-labelledby="dropdownMenuLink5">
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                                    </li>
-                                                                                    <li class="dropdown-divider"></li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center">
-                                                                                <div class="avatar-sm">
-                                                                                    <div
-                                                                                        class="avatar-title bg-soft-info text-info rounded fs-20">
-                                                                                        <i class="ri-folder-line"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="ms-3 flex-grow-1">
-                                                                                    <h6 class="fs-14 mb-0"><a
-                                                                                            href="javascript:void(0);"
-                                                                                            class="text-body">Project
-                                                                                            Screenshots Collection</a>
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>Floder File</td>
-                                                                        <td>87.24 MB</td>
-                                                                        <td>08 Nov 2021</td>
-                                                                        <td>
-                                                                            <div class="dropdown">
-                                                                                <a href="javascript:void(0);"
-                                                                                    class="btn btn-light btn-icon"
-                                                                                    id="dropdownMenuLink6"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="true">
-                                                                                    <i class="ri-equalizer-fill"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    aria-labelledby="dropdownMenuLink6">
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-eye-fill me-2 align-middle"></i>View</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-download-2-fill me-2 align-middle"></i>Download</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center">
-                                                                                <div class="avatar-sm">
-                                                                                    <div
-                                                                                        class="avatar-title bg-soft-danger text-danger rounded fs-20">
-                                                                                        <i class="ri-image-2-fill"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="ms-3 flex-grow-1">
-                                                                                    <h6 class="fs-14 mb-0"><a
-                                                                                            href="javascript:void(0);"
-                                                                                            class="text-body">Velzon-logo.png</a>
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>PNG File</td>
-                                                                        <td>879 KB</td>
-                                                                        <td>02 Nov 2021</td>
-                                                                        <td>
-                                                                            <div class="dropdown">
-                                                                                <a href="javascript:void(0);"
-                                                                                    class="btn btn-light btn-icon"
-                                                                                    id="dropdownMenuLink7"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="true">
-                                                                                    <i class="ri-equalizer-fill"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    aria-labelledby="dropdownMenuLink7">
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-eye-fill me-2 align-middle"></i>View</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-download-2-fill me-2 align-middle"></i>Download</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);"><i
-                                                                                                class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
+                                                                   <?php } ?>
+                                                                   
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                        <div class="text-center mt-3">
-                                                            <a href="javascript:void(0);" class="text-success "><i
-                                                                    class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i>
-                                                                Load more </a>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -2041,6 +1939,12 @@ $aluno = mysqli_fetch_array($alunos);
                 </div><!-- container-fluid -->
             </div><!-- End Page-content -->
 
+
+
+
+
+
+            
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row">
@@ -2069,25 +1973,52 @@ $aluno = mysqli_fetch_array($alunos);
     <!--end back-to-top-->
 
 
+
+ <!-- Modal OS -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Abrir Nova OS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <form action="inserir_os" method="POST">
+       
+        <label>Tipo OS</label>
+    
+
+<select name="tipo" id="cliente-select" required class="form-control meuselect">
+<option value="">Informe</option>
+    <?php
+$sqlt = "SELECT * FROM os_tipos WHERE os_tipo_status ='1'  ORDER BY os_tipo_nome";
+$resultadot = mysqli_query($conn, $sqlt);
+while ($linhat = mysqli_fetch_array($resultadot)) { ?>
+    <option value="<?php echo $linhat[os_tipo_id] ?>"><?php echo $linhat[os_tipo_nome] ?></option>
+    <?php } ?>
+</select>
+<label>Nome do Solicitante</label>
+   
+   <input class="form-control" name="solicitante" required></textarea>
+
+        <label>Informações Adicionais </label>
+   
+        <textarea class="form-control" id="story" name="consideracoes" rows="5" cols="33"></textarea>
+
+      </div>
+      <input name="cliente" type="hidden" value="<?php echo $id ?>" > 
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+</form>
+    </div>
+  </div>
+</div>
+
+
+
    
 
-    <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
-
-    <!-- swiper js -->
-    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
-
-    <!-- profile init js -->
-    <script src="assets/js/pages/profile.init.js"></script>
-
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-</body>
-
-
-</html>

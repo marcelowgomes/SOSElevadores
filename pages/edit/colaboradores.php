@@ -15,12 +15,12 @@ include "database/conexao.php";
 	<?php
 
 if ($_POST['senha'] =='') { 
-@$conn->query("update users set user_nome ='$_POST[nome]', user_login ='$_POST[login]', user_email ='$_POST[email]', user_telefone ='$_POST[telefone]' where user_id  = '$_POST[id]' ");
+@$conn->query("update users set user_nome ='$_POST[nome]', user_login ='$_POST[login]', user_email ='$_POST[email]', user_telefone ='$_POST[telefone], user_tipo = '$_POST[tipo]' where user_id  = '$_POST[id]' ");
 } else { 
 	
 $upass = strip_tags($_POST['senha']);
 $hashed_password = password_hash($upass, PASSWORD_DEFAULT); 	
-@$conn->query("update users set user_nome ='$_POST[nome]', user_login ='$_POST[login]', user_email ='$_POST[email]', user_senha ='$hashed_password', user_telefone ='$_POST[telefone]' where user_id  = '$_POST[id]' ");
+@$conn->query("update users set user_nome ='$_POST[nome]', user_login ='$_POST[login]', user_email ='$_POST[email]', user_senha ='$hashed_password', user_telefone ='$_POST[telefone],  user_tipo = '$_POST[tipo]' where user_id  = '$_POST[id]' ");
 }
 
 ?>

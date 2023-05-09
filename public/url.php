@@ -47,7 +47,12 @@ case 'cad_cliente':
 include('pages/clientes/cad_cliente.php');break;
 
 case 'listar_clientes':
+@$counter = $url[1];
 include('pages/clientes/listar_clientes.php');break;	
+
+case 'listar_unico':
+@$counter = $url[1];
+include('pages/clientes/listar_unico.php');break;	
 
 case 'deletar_cliente':
 @$id = $url[1];

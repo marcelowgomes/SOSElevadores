@@ -5,7 +5,6 @@ if (!empty($_SESSION['user_id'])) {
     header("Location: ../../login.php");
 }
 
-
 ?>
 
 
@@ -109,12 +108,12 @@ if (!empty($_SESSION['user_id'])) {
                     <div class="row g-4 mb-3">
                         <div class="col-sm-auto">
                             <div>
-
+                                <a href="listar_clientes"><i class="ri-arrow-left-line"></i>&nbspVoltar</a>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="d-flex justify-content-sm-end">
-                                <form method="POST" id="form_busca" action="listar_unico">
+                                <form id="form_busca">
                                 <div class="search-box ms-2">
                                     <input type="text" class="form-control" id="busca" name="cliente" placeholder="Localizar clientes">
                                     <i class="ri-search-line search-icon"></i>
@@ -142,19 +141,14 @@ if (!empty($_SESSION['user_id'])) {
                             <tbody class="list form-check-all">
 
                                 <?php
-                                if(!$counter){
-                                    $counter = 1;
-                                    $limits = 20;
-                                }else{
-                                    $limits = ($counter) * 20;
-                                }
-                                $sql = "SELECT * FROM clientes WHERE cliente_lixeira ='1'  ORDER BY cliente_fantasia";
+
+                                $sql = "SELECT * FROM clientes WHERE cliente_lixeira ='1' AND cliente_fantasia LIKE '%$_POST[cliente]%'  ORDER BY cliente_fantasia";
                                 // Executando $sql e verificando se tudo ocorreu certo.
                                 $resultado = mysqli_query($conn, $sql);
                                 //Realizando um loop para exibi&ccedil;&atilde;o de todos os dados 
                                 $registros = mysqli_fetch_all($resultado);
-
-                                for ($i = $limits - 19; $i < $limits; $i++) {
+                                if(mysqli_num_rows($resultado) > 0 && isset($_POST['cliente'])){
+                                for ($i = 0; $i < mysqli_num_rows($resultado); $i++) {
                                    $linha = $registros[$i];
                                 ?>
                                     <tr>
@@ -257,7 +251,7 @@ if (!empty($_SESSION['user_id'])) {
 
 
 
-                    <?php } ?>
+                    <?php }} ?>
 
 
 
@@ -332,16 +326,6 @@ if (!empty($_SESSION['user_id'])) {
                 });
 
             });
-
-            // LOCALIZAR CLIENTE
-
-            $(document).ready(function() {
-                form  = $("#form_busca")
-                $("#busca").blur(function (){
-                    form.submit();
-                })
-                
-            })
         </script>
 
 

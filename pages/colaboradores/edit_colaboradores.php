@@ -63,7 +63,7 @@ $result_colaborador = mysqli_query($conn, $sql_colaborador);
                                                        <select name="tipo" type="text" class="form-control" id="tipo" >
                                                         <option value="<?php echo $linha['user_tipo'] ?>"></option>
                                                         <?php while($linha_colaborador = mysqli_fetch_assoc($result_colaborador)){ ?>
-                                                        <option value="<?php echo $linha_colaborador['nome_tipo_colaborador']; ?>"><?php echo $linha_colaborador['nome_tipo_colaborador']; ?></option>
+                                                        <option value="<?php echo $linha_colaborador['id_tipo_colaborador']; ?>"><?php echo $linha_colaborador['nome_tipo_colaborador']; ?></option>
                                                         <?php } ?>
                                                        </select>
                                                     </div>
